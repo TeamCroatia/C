@@ -1,2 +1,3 @@
-# C
-ProjectC, Launcher Project.
+Project C
+===================
+아무도 런처를 만들지 않아서 새로 만들어진 프로젝트.
