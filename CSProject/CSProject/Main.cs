@@ -53,6 +53,10 @@ namespace CSProject
             ObtainAccessToken(UsernameField.Text, PasswordField.Text);
             string Token = GetAccessToken();
             MessageBox.Show("" +Token, "Token");
+            if (Directory.Exists(@"AccessToken.txt"))
+            {
+                File.Delete(@"AccessToken.txt");
+            }
             StreamWriter dw = new StreamWriter(@"AccessToken.txt");
             dw.WriteLine("" +Token);
             dw.Close();
