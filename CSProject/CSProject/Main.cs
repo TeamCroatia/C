@@ -50,20 +50,36 @@ namespace CSProject
 
         private void materialFlatButton1_Click(object sender, EventArgs e)
         {
-            ObtainAccessToken(UsernameField.Text, PasswordField.Text);
-            string Token = GetAccessToken();
-            MessageBox.Show("" +Token, "Token");
-            if (Directory.Exists(@"AccessToken.txt"))
+            if (UsernameField.Text == "")
             {
-                File.Delete(@"AccessToken.txt");
+                MessageBox.Show("Username 필드가 입력되지 않았습니다!");
             }
-            StreamWriter dw = new StreamWriter(@"AccessToken.txt");
-            dw.WriteLine("" +Token);
-            dw.Close();
-            ///string strCmdText;
-            ///strCmdText = "java -Xms512m -Xmx1g -Djava.library.path=natives/ -cp \"minecraft.jar; lwjgl.jar; lwjgl_util.jar\" net.minecraft.client.Minecraft " + "My Email" + " " + code;
-            ///Process.Start("CMD.exe", strCmdText);
-            ///Application.Exit();
+
+            else if (PasswordField.Text == "")
+            {
+                MessageBox.Show("Password 필드가 입력되지 않았습니다!");
+            }
+
+            else
+            {
+                ObtainAccessToken(UsernameField.Text, PasswordField.Text);
+                string Token = GetAccessToken();
+
+                MessageBox.Show("" + Token, "Token");
+                if (Directory.Exists(@"AccessToken.txt"))
+                {
+                    File.Delete(@"AccessToken.txt");
+                }
+
+                StreamWriter dw = new StreamWriter(@"AccessToken.txt");
+                dw.WriteLine("" + Token);
+                dw.Close();
+
+                ///string strCmdText;
+                ///strCmdText = "java -Xms512m -Xmx1g -Djava.library.path=natives/ -cp \"minecraft.jar; lwjgl.jar; lwjgl_util.jar\" net.minecraft.client.Minecraft " + "My Email" + " " + code;
+                ///Process.Start("CMD.exe", strCmdText);
+                ///Application.Exit();
+            }
         }
 
         private void CheckTokenButton_Click(object sender, EventArgs e)
