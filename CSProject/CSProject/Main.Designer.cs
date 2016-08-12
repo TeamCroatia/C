@@ -34,6 +34,7 @@
             this.PasswordField = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.LoginButton = new MaterialSkin.Controls.MaterialFlatButton();
             this.CheckTokenButton = new MaterialSkin.Controls.MaterialFlatButton();
+            this.GameStartButton = new MaterialSkin.Controls.MaterialFlatButton();
             this.SuspendLayout();
             // 
             // UsernameLabel
@@ -115,7 +116,7 @@
             this.CheckTokenButton.AutoSize = true;
             this.CheckTokenButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CheckTokenButton.Depth = 0;
-            this.CheckTokenButton.Location = new System.Drawing.Point(141, 239);
+            this.CheckTokenButton.Location = new System.Drawing.Point(62, 238);
             this.CheckTokenButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CheckTokenButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.CheckTokenButton.Name = "CheckTokenButton";
@@ -126,11 +127,28 @@
             this.CheckTokenButton.UseVisualStyleBackColor = true;
             this.CheckTokenButton.Click += new System.EventHandler(this.CheckTokenButton_Click);
             // 
+            // GameStartButton
+            // 
+            this.GameStartButton.AutoSize = true;
+            this.GameStartButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.GameStartButton.Depth = 0;
+            this.GameStartButton.Location = new System.Drawing.Point(298, 238);
+            this.GameStartButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.GameStartButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.GameStartButton.Name = "GameStartButton";
+            this.GameStartButton.Primary = false;
+            this.GameStartButton.Size = new System.Drawing.Size(91, 36);
+            this.GameStartButton.TabIndex = 6;
+            this.GameStartButton.Text = "Link Start!";
+            this.GameStartButton.UseVisualStyleBackColor = true;
+            this.GameStartButton.Click += new System.EventHandler(this.GameStartButton_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(500, 300);
+            this.Controls.Add(this.GameStartButton);
             this.Controls.Add(this.CheckTokenButton);
             this.Controls.Add(this.LoginButton);
             this.Controls.Add(this.PasswordField);
@@ -141,6 +159,7 @@
             this.MinimumSize = new System.Drawing.Size(500, 300);
             this.Name = "Main";
             this.Text = "TeamCroatia Client";
+            this.Load += new System.EventHandler(this.Main_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -154,6 +173,7 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField PasswordField;
         private MaterialSkin.Controls.MaterialFlatButton LoginButton;
         private MaterialSkin.Controls.MaterialFlatButton CheckTokenButton;
+        private MaterialSkin.Controls.MaterialFlatButton GameStartButton;
     }
 }
 

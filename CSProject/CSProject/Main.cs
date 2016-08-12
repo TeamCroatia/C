@@ -21,6 +21,17 @@ namespace CSProject
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Blue800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
         }
 
+        private void Main_Load(object sender, EventArgs e)
+        {
+            if (Directory.Exists(@"Login.infomation")) //만약 Login.information란 파일이 존재하면
+            {
+                File.Delete(@"Login.information"); //삭☆제☆
+            }
+            StreamWriter dw = new StreamWriter(@"Login.information");
+            dw.WriteLine("no");
+            dw.Close();
+        }
+
         //액세스 토큰 불러오기
         string ACCESS_TOKEN;
         public string GetAccessToken()
@@ -81,10 +92,15 @@ namespace CSProject
                 dw.WriteLine("" + Token);
                 dw.Close();
 
-                ///string strCmdText;
-                ///strCmdText = "java -Xms512m -Xmx1g -Djava.library.path=natives/ -cp \"minecraft.jar; lwjgl.jar; lwjgl_util.jar\" net.minecraft.client.Minecraft " + "My Email" + " " + code;
-                ///Process.Start("CMD.exe", strCmdText);
-                ///Application.Exit();
+                //로그인 여부 기록
+                if (Directory.Exists(@"Login.infomation"))
+                {
+                    File.Delete(@"Login.information"); //삭☆제☆
+                }
+                StreamWriter login = new StreamWriter(@"Login.information");
+                login.WriteLine("1");
+                login.Close();
+
             }
         }
 
@@ -92,13 +108,43 @@ namespace CSProject
         {
             if (Directory.Exists(@"AccessToken.txt")) //만약 AccessToken.txt란 파일이 존재하면
             {
-                string path = @"AccessToken.txt";
-                string Token = File.ReadAllText(path);
+                string Token = File.ReadAllText(@"AccessToken.txt");
                 MessageBox.Show("" + Token, "Token");
             }
             else
             {
                 MessageBox.Show("컴퓨터에 저장된 토큰이 없습니다! 로그인을 해주세요.");
+            }
+        }
+
+        private void GameStartButton_Click(object sender, EventArgs e)
+        {
+            if (Directory.Exists(@"Login.information")) //만약 Login.information란 파일이 존재하면
+            {
+                string Login = File.ReadAllText(@"Login.information");
+                if (Login =="1")
+                {
+                    MessageBox.Show("" + Login);
+                    if (Directory.Exists(@"AccessToken.txt"))
+                    {
+                        string code = File.ReadAllText(@"AccessToken.txt");
+                        //이하 구글링으로 얻은 실행코드.
+                        ///string strCmdText;
+                        ///strCmdText = "java -Xms512m -Xmx1g -Djava.library.path=natives/ -cp \"minecraft.jar; lwjgl.jar; lwjgl_util.jar\" net.minecraft.client.Minecraft " + "My Email" + " " + Code;
+                        ///Process.Start("CMD.exe", strCmdText);
+                        ///Application.Exit();
+                        MessageBox.Show("" + code, "Token");
+                    }
+                    else
+                    {
+                        MessageBox.Show("로그인 정보가 없습니다! 다시 로그인해 주세요.");
+                    }
+                }
+            }
+
+            else
+            {
+                MessageBox.Show("로그인 여부를 확인할 수 없습니다! 다시 로그인해 주세요.");
             }
         }
     }
