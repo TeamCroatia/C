@@ -32,7 +32,7 @@
             this.PasswordLabel = new MaterialSkin.Controls.MaterialLabel();
             this.UsernameField = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.PasswordField = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.materialFlatButton1 = new MaterialSkin.Controls.MaterialFlatButton();
+            this.LoginButton = new MaterialSkin.Controls.MaterialFlatButton();
             this.CheckTokenButton = new MaterialSkin.Controls.MaterialFlatButton();
             this.SuspendLayout();
             // 
@@ -94,21 +94,21 @@
             this.PasswordField.TabIndex = 3;
             this.PasswordField.UseSystemPasswordChar = false;
             // 
-            // materialFlatButton1
+            // LoginButton
             // 
-            this.materialFlatButton1.AutoSize = true;
-            this.materialFlatButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.materialFlatButton1.Depth = 0;
-            this.materialFlatButton1.Location = new System.Drawing.Point(359, 145);
-            this.materialFlatButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.materialFlatButton1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialFlatButton1.Name = "materialFlatButton1";
-            this.materialFlatButton1.Primary = false;
-            this.materialFlatButton1.Size = new System.Drawing.Size(52, 36);
-            this.materialFlatButton1.TabIndex = 4;
-            this.materialFlatButton1.Text = "Login";
-            this.materialFlatButton1.UseVisualStyleBackColor = true;
-            this.materialFlatButton1.Click += new System.EventHandler(this.materialFlatButton1_Click);
+            this.LoginButton.AutoSize = true;
+            this.LoginButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.LoginButton.Depth = 0;
+            this.LoginButton.Location = new System.Drawing.Point(359, 145);
+            this.LoginButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.LoginButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LoginButton.Name = "LoginButton";
+            this.LoginButton.Primary = false;
+            this.LoginButton.Size = new System.Drawing.Size(52, 36);
+            this.LoginButton.TabIndex = 4;
+            this.LoginButton.Text = "Login";
+            this.LoginButton.UseVisualStyleBackColor = true;
+            this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click_1);
             // 
             // CheckTokenButton
             // 
@@ -132,7 +132,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(500, 300);
             this.Controls.Add(this.CheckTokenButton);
-            this.Controls.Add(this.materialFlatButton1);
+            this.Controls.Add(this.LoginButton);
             this.Controls.Add(this.PasswordField);
             this.Controls.Add(this.UsernameField);
             this.Controls.Add(this.PasswordLabel);
@@ -152,7 +152,7 @@
         private MaterialSkin.Controls.MaterialLabel PasswordLabel;
         private MaterialSkin.Controls.MaterialSingleLineTextField UsernameField;
         private MaterialSkin.Controls.MaterialSingleLineTextField PasswordField;
-        private MaterialSkin.Controls.MaterialFlatButton materialFlatButton1;
+        private MaterialSkin.Controls.MaterialFlatButton LoginButton;
         private MaterialSkin.Controls.MaterialFlatButton CheckTokenButton;
     }
 }

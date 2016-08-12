@@ -14,12 +14,14 @@ namespace CSProject
         {
             InitializeComponent();
 
+            //머티리얼 디자인 연결
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Blue800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
         }
 
+        //액세스 토큰 불러오기
         string ACCESS_TOKEN;
         public string GetAccessToken()
         {
@@ -48,29 +50,33 @@ namespace CSProject
             }
         }
 
-        private void materialFlatButton1_Click(object sender, EventArgs e)
+        //
+        private void LoginButton_Click_1(object sender, EventArgs e)
         {
-            if (UsernameField.Text == "")
+            if (UsernameField.Text == "") //만약 UsernameField에 아무것도 입력되지 않으면
             {
                 MessageBox.Show("Username 필드가 입력되지 않았습니다!");
             }
 
-            else if (PasswordField.Text == "")
+            else if (PasswordField.Text == "") //만약 PasswordField에 아무것도 입력되지 않으면
             {
                 MessageBox.Show("Password 필드가 입력되지 않았습니다!");
             }
 
             else
             {
+                //액세스토큰 받아오기
                 ObtainAccessToken(UsernameField.Text, PasswordField.Text);
                 string Token = GetAccessToken();
 
-                MessageBox.Show("" + Token, "Token");
-                if (Directory.Exists(@"AccessToken.txt"))
+                MessageBox.Show("" + Token, "Token"); //액세스토큰 정보 띄우기
+
+                if (Directory.Exists(@"AccessToken.txt")) //만약 먼저 저장된 액세스토큰이 존재하면
                 {
-                    File.Delete(@"AccessToken.txt");
+                    File.Delete(@"AccessToken.txt"); //삭☆제☆
                 }
 
+                //엑세스토큰 정보 기록
                 StreamWriter dw = new StreamWriter(@"AccessToken.txt");
                 dw.WriteLine("" + Token);
                 dw.Close();
@@ -84,9 +90,16 @@ namespace CSProject
 
         private void CheckTokenButton_Click(object sender, EventArgs e)
         {
-            string path = @"AccessToken.txt";
-            string Token = File.ReadAllText(path);
-            MessageBox.Show("" + Token , "Token");
+            if (Directory.Exists(@"AccessToken.txt")) //만약 AccessToken.txt란 파일이 존재하면
+            {
+                string path = @"AccessToken.txt";
+                string Token = File.ReadAllText(path);
+                MessageBox.Show("" + Token, "Token");
+            }
+            else
+            {
+                MessageBox.Show("컴퓨터에 저장된 토큰이 없습니다! 로그인을 해주세요.");
+            }
         }
     }
 }
