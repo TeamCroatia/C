@@ -23,12 +23,12 @@ namespace CSProject
 
         private void Main_Load(object sender, EventArgs e)
         {
-            if (Directory.Exists(@"Login.infomation")) //만약 Login.information란 파일이 존재하면
+            if (File.Exists(@"Login.infomation")) //만약 Login.information란 파일이 존재하면
             {
                 File.Delete(@"Login.information"); //삭☆제☆
             }
             StreamWriter dw = new StreamWriter(@"Login.information");
-            dw.WriteLine("no");
+            dw.WriteLine("0");
             dw.Close();
         }
 
@@ -82,7 +82,7 @@ namespace CSProject
 
                 MessageBox.Show("" + Token, "Token"); //액세스토큰 정보 띄우기
 
-                if (Directory.Exists(@"AccessToken.txt")) //만약 먼저 저장된 액세스토큰이 존재하면
+                if (File.Exists(@"AccessToken.txt")) //만약 먼저 저장된 액세스토큰이 존재하면
                 {
                     File.Delete(@"AccessToken.txt"); //삭☆제☆
                 }
@@ -93,7 +93,7 @@ namespace CSProject
                 dw.Close();
 
                 //로그인 여부 기록
-                if (Directory.Exists(@"Login.infomation"))
+                if (File.Exists(@"Login.infomation"))
                 {
                     File.Delete(@"Login.information"); //삭☆제☆
                 }
@@ -106,7 +106,7 @@ namespace CSProject
 
         private void CheckTokenButton_Click(object sender, EventArgs e)
         {
-            if (Directory.Exists(@"AccessToken.txt")) //만약 AccessToken.txt란 파일이 존재하면
+            if (File.Exists(@"AccessToken.txt")) //만약 AccessToken.txt란 파일이 존재하면
             {
                 string Token = File.ReadAllText(@"AccessToken.txt");
                 MessageBox.Show("" + Token, "Token");
@@ -119,13 +119,13 @@ namespace CSProject
 
         private void GameStartButton_Click(object sender, EventArgs e)
         {
-            if (Directory.Exists(@"Login.information")) //만약 Login.information란 파일이 존재하면
+            if (File.Exists(@"Login.information")) //만약 Login.information란 파일이 존재하면
             {
                 string Login = File.ReadAllText(@"Login.information");
+                MessageBox.Show("" + Login);
                 if (Login =="1")
                 {
-                    MessageBox.Show("" + Login);
-                    if (Directory.Exists(@"AccessToken.txt"))
+                    if (File.Exists(@"AccessToken.txt"))
                     {
                         string code = File.ReadAllText(@"AccessToken.txt");
                         //이하 구글링으로 얻은 실행코드.
