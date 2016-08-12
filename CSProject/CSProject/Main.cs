@@ -50,12 +50,23 @@ namespace CSProject
 
         private void materialFlatButton1_Click(object sender, EventArgs e)
         {
-            ObtainAccessToken("My Email", "My Password");
-            string code = GetAccessToken();
-            string strCmdText;
-            strCmdText = "java -Xms512m -Xmx1g -Djava.library.path=natives/ -cp \"minecraft.jar; lwjgl.jar; lwjgl_util.jar\" net.minecraft.client.Minecraft " + "My Email" + " " + code;
-            Process.Start("CMD.exe", strCmdText);
-            Application.Exit();
+            ObtainAccessToken(UsernameField.Text, PasswordField.Text);
+            string Token = GetAccessToken();
+            MessageBox.Show("" +Token, "Token");
+            StreamWriter dw = new StreamWriter(@"AccessToken.txt");
+            dw.WriteLine("" +Token);
+            dw.Close();
+            ///string strCmdText;
+            ///strCmdText = "java -Xms512m -Xmx1g -Djava.library.path=natives/ -cp \"minecraft.jar; lwjgl.jar; lwjgl_util.jar\" net.minecraft.client.Minecraft " + "My Email" + " " + code;
+            ///Process.Start("CMD.exe", strCmdText);
+            ///Application.Exit();
+        }
+
+        private void CheckTokenButton_Click(object sender, EventArgs e)
+        {
+            string path = @"AccessToken.txt";
+            string Token = File.ReadAllText(path);
+            MessageBox.Show("" + Token , "Token");
         }
     }
 }

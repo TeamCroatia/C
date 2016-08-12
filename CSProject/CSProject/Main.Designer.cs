@@ -33,6 +33,7 @@
             this.UsernameField = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.PasswordField = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.materialFlatButton1 = new MaterialSkin.Controls.MaterialFlatButton();
+            this.CheckTokenButton = new MaterialSkin.Controls.MaterialFlatButton();
             this.SuspendLayout();
             // 
             // UsernameLabel
@@ -109,11 +110,28 @@
             this.materialFlatButton1.UseVisualStyleBackColor = true;
             this.materialFlatButton1.Click += new System.EventHandler(this.materialFlatButton1_Click);
             // 
+            // CheckTokenButton
+            // 
+            this.CheckTokenButton.AutoSize = true;
+            this.CheckTokenButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CheckTokenButton.Depth = 0;
+            this.CheckTokenButton.Location = new System.Drawing.Point(141, 239);
+            this.CheckTokenButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.CheckTokenButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CheckTokenButton.Name = "CheckTokenButton";
+            this.CheckTokenButton.Primary = false;
+            this.CheckTokenButton.Size = new System.Drawing.Size(203, 36);
+            this.CheckTokenButton.TabIndex = 5;
+            this.CheckTokenButton.Text = "AccessToken Information";
+            this.CheckTokenButton.UseVisualStyleBackColor = true;
+            this.CheckTokenButton.Click += new System.EventHandler(this.CheckTokenButton_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(500, 300);
+            this.Controls.Add(this.CheckTokenButton);
             this.Controls.Add(this.materialFlatButton1);
             this.Controls.Add(this.PasswordField);
             this.Controls.Add(this.UsernameField);
@@ -135,6 +153,7 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField UsernameField;
         private MaterialSkin.Controls.MaterialSingleLineTextField PasswordField;
         private MaterialSkin.Controls.MaterialFlatButton materialFlatButton1;
+        private MaterialSkin.Controls.MaterialFlatButton CheckTokenButton;
     }
 }
 
