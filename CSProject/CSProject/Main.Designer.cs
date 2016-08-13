@@ -35,6 +35,8 @@
             this.LoginButton = new MaterialSkin.Controls.MaterialFlatButton();
             this.CheckTokenButton = new MaterialSkin.Controls.MaterialFlatButton();
             this.GameStartButton = new MaterialSkin.Controls.MaterialFlatButton();
+            this.DataDownloadButton = new MaterialSkin.Controls.MaterialFlatButton();
+            this.DownloadInfor = new MaterialSkin.Controls.MaterialLabel();
             this.SuspendLayout();
             // 
             // UsernameLabel
@@ -44,7 +46,7 @@
             this.UsernameLabel.Depth = 0;
             this.UsernameLabel.Font = new System.Drawing.Font("Roboto", 11F);
             this.UsernameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.UsernameLabel.Location = new System.Drawing.Point(59, 129);
+            this.UsernameLabel.Location = new System.Drawing.Point(68, 82);
             this.UsernameLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.UsernameLabel.Name = "UsernameLabel";
             this.UsernameLabel.Size = new System.Drawing.Size(76, 18);
@@ -58,7 +60,7 @@
             this.PasswordLabel.Depth = 0;
             this.PasswordLabel.Font = new System.Drawing.Font("Roboto", 11F);
             this.PasswordLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.PasswordLabel.Location = new System.Drawing.Point(59, 173);
+            this.PasswordLabel.Location = new System.Drawing.Point(68, 126);
             this.PasswordLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.PasswordLabel.Name = "PasswordLabel";
             this.PasswordLabel.Size = new System.Drawing.Size(74, 18);
@@ -69,7 +71,7 @@
             // 
             this.UsernameField.Depth = 0;
             this.UsernameField.Hint = "";
-            this.UsernameField.Location = new System.Drawing.Point(141, 129);
+            this.UsernameField.Location = new System.Drawing.Point(150, 82);
             this.UsernameField.MouseState = MaterialSkin.MouseState.HOVER;
             this.UsernameField.Name = "UsernameField";
             this.UsernameField.PasswordChar = '\0';
@@ -84,7 +86,7 @@
             // 
             this.PasswordField.Depth = 0;
             this.PasswordField.Hint = "";
-            this.PasswordField.Location = new System.Drawing.Point(141, 172);
+            this.PasswordField.Location = new System.Drawing.Point(150, 125);
             this.PasswordField.MouseState = MaterialSkin.MouseState.HOVER;
             this.PasswordField.Name = "PasswordField";
             this.PasswordField.PasswordChar = '\0';
@@ -100,7 +102,7 @@
             this.LoginButton.AutoSize = true;
             this.LoginButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.LoginButton.Depth = 0;
-            this.LoginButton.Location = new System.Drawing.Point(359, 145);
+            this.LoginButton.Location = new System.Drawing.Point(368, 98);
             this.LoginButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.LoginButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.LoginButton.Name = "LoginButton";
@@ -116,7 +118,7 @@
             this.CheckTokenButton.AutoSize = true;
             this.CheckTokenButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CheckTokenButton.Depth = 0;
-            this.CheckTokenButton.Location = new System.Drawing.Point(62, 238);
+            this.CheckTokenButton.Location = new System.Drawing.Point(13, 248);
             this.CheckTokenButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CheckTokenButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.CheckTokenButton.Name = "CheckTokenButton";
@@ -132,7 +134,7 @@
             this.GameStartButton.AutoSize = true;
             this.GameStartButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.GameStartButton.Depth = 0;
-            this.GameStartButton.Location = new System.Drawing.Point(298, 238);
+            this.GameStartButton.Location = new System.Drawing.Point(188, 200);
             this.GameStartButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.GameStartButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.GameStartButton.Name = "GameStartButton";
@@ -143,11 +145,43 @@
             this.GameStartButton.UseVisualStyleBackColor = true;
             this.GameStartButton.Click += new System.EventHandler(this.GameStartButton_Click);
             // 
+            // DataDownloadButton
+            // 
+            this.DataDownloadButton.AutoSize = true;
+            this.DataDownloadButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.DataDownloadButton.Depth = 0;
+            this.DataDownloadButton.Location = new System.Drawing.Point(13, 200);
+            this.DataDownloadButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.DataDownloadButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.DataDownloadButton.Name = "DataDownloadButton";
+            this.DataDownloadButton.Primary = false;
+            this.DataDownloadButton.Size = new System.Drawing.Size(167, 36);
+            this.DataDownloadButton.TabIndex = 7;
+            this.DataDownloadButton.Text = "Resources Download";
+            this.DataDownloadButton.UseVisualStyleBackColor = true;
+            this.DataDownloadButton.Click += new System.EventHandler(this.DataDownloadButton_Click);
+            // 
+            // DownloadInfor
+            // 
+            this.DownloadInfor.AutoSize = true;
+            this.DownloadInfor.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.DownloadInfor.Depth = 0;
+            this.DownloadInfor.Font = new System.Drawing.Font("Roboto", 11F);
+            this.DownloadInfor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.DownloadInfor.Location = new System.Drawing.Point(37, 165);
+            this.DownloadInfor.MouseState = MaterialSkin.MouseState.HOVER;
+            this.DownloadInfor.Name = "DownloadInfor";
+            this.DownloadInfor.Size = new System.Drawing.Size(103, 18);
+            this.DownloadInfor.TabIndex = 8;
+            this.DownloadInfor.Text = "File Download";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(500, 300);
+            this.Controls.Add(this.DownloadInfor);
+            this.Controls.Add(this.DataDownloadButton);
             this.Controls.Add(this.GameStartButton);
             this.Controls.Add(this.CheckTokenButton);
             this.Controls.Add(this.LoginButton);
@@ -174,6 +208,8 @@
         private MaterialSkin.Controls.MaterialFlatButton LoginButton;
         private MaterialSkin.Controls.MaterialFlatButton CheckTokenButton;
         private MaterialSkin.Controls.MaterialFlatButton GameStartButton;
+        private MaterialSkin.Controls.MaterialFlatButton DataDownloadButton;
+        private MaterialSkin.Controls.MaterialLabel DownloadInfor;
     }
 }
 
