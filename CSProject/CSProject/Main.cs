@@ -119,33 +119,33 @@ namespace CSProject
 
         private void GameStartButton_Click(object sender, EventArgs e)
         {
-            if (File.Exists(@"Login.information")) //만약 Login.information란 파일이 존재하면
-            {
-                string Login = File.ReadAllText(@"Login.information");
-                MessageBox.Show("" + Login);
-                if (Login =="1")
-                {
-                    if (File.Exists(@"AccessToken.txt"))
-                    {
-                        string code = File.ReadAllText(@"AccessToken.txt");
-                        //이하 구글링으로 얻은 실행코드.
-                        ///string strCmdText;
-                        ///strCmdText = "java -Xms512m -Xmx1g -Djava.library.path=natives/ -cp \"minecraft.jar; lwjgl.jar; lwjgl_util.jar\" net.minecraft.client.Minecraft " + "My Email" + " " + Code;
-                        ///Process.Start("CMD.exe", strCmdText);
-                        ///Application.Exit();
-                        MessageBox.Show("" + code, "Token");
-                    }
-                    else
-                    {
-                        MessageBox.Show("로그인 정보가 없습니다! 다시 로그인해 주세요.");
-                    }
-                }
-            }
 
-            else
-            {
-                MessageBox.Show("로그인 여부를 확인할 수 없습니다! 다시 로그인해 주세요.");
-            }
+            string code = File.ReadAllText(@"AccessToken.txt");
+            //이하 구글링으로 얻은 실행코드.
+            ///string strCmdText;
+            ///strCmdText = "java -Xms512m -Xmx1g -Djava.library.path=natives/ -cp \"minecraft.jar; lwjgl.jar; lwjgl_util.jar\" net.minecraft.client.Minecraft " + "My Email" + " " + Code;
+            ///Process.Start("CMD.exe", strCmdText);
+            ///Application.Exit();
+
+            ///Process.Start("cmd.exe");
+
+            ProcessStartInfo cmd = new ProcessStartInfo();
+            Process process = new Process();
+            cmd.FileName = @"cmd";
+            cmd.WindowStyle = ProcessWindowStyle.Hidden;             // cmd창이 숨겨지도록 하기
+            cmd.CreateNoWindow = true;                               // cmd창을 띄우지 안도록 하기
+
+            cmd.UseShellExecute = false;
+            cmd.RedirectStandardInput = true;          // cmd창으로 데이터 보내기
+
+            process.EnableRaisingEvents = false;
+            process.StartInfo = cmd;
+            process.Start();
+            process.StandardInput.Write(@"taskmgr" + Environment.NewLine);
+            // 명령어를 보낼때는 꼭 마무리를 해줘야 한다. 그래서 마지막에 NewLine가 필요하다
+            process.StandardInput.Close();
+
+            //MessageBox.Show("" + code, "Token");
         }
     }
 }
