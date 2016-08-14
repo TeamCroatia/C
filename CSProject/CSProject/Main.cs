@@ -154,98 +154,53 @@ namespace CSProject
         private void DataDownloadButton_Click(object sender, EventArgs e)
         {
             WebClient Path = new WebClient();
-            int a = 0;
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile22.uf@252BF13F56B6F7A42C9CE1.001", "GameLib.7z.001");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile6.uf@23205B3F56B6F7A634418E.002", "GameLib.7z.002");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile29.uf@2531B03F56B6F7AA26137D.003", "GameLib.7z.003");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile30.uf@2132A13F56B6F7AC26ACBE.004", "GameLib.7z.004");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile8.uf@24232C3F56B6F7AE332AB5.005", "GameLib.7z.005");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile6.uf@2425C73F56B6F7B230DD08.006", "GameLib.7z.006");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile30.uf@262C043F56B6F7C02C8982.007", "GameLib.7z.007");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile25.uf@2550583F56B6F7C4119D07.008", "GameLib.7z.008");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile5.uf@2538A73F56B6F7C622CD99.009", "GameLib.7z.009");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile8.uf@2427193F56B6F7C8300E1E.010", "GameLib.7z.010");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile3.uf@222B313F56B6F7CA2DDCBB.011", "GameLib.7z.011");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile25.uf@2752833F56B6F7CE0F29A8.012", "GameLib.7z.012");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile22.uf@272D053F56B6F7D02A6435.013", "GameLib.7z.013");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile3.uf@212D8A3F56B6F7D22AD137.014", "GameLib.7z.014");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile26.uf@23260A3F56B6F7D631AF9D.015", "GameLib.7z.015");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile6.uf@255DFA3F56B6F7D807941E.016", "GameLib.7z.016");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile3.uf@2332FC3F56B6F7E826ACC6.017", "GameLib.7z.017");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile6.uf@2721B53F56B6F7EC342793.018", "GameLib.7z.018");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile27.uf@234AFE3F56B6F7EE14D1A2.019", "GameLib.7z.019");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile6.uf@25283C3F56B6F7F02F5302.020", "GameLib.7z.020");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile1.uf@273C2A3F56B6F7F11F2EFB.021", "GameLib.7z.021");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile7.uf@252DB73F56B6F7F32BE362.022", "GameLib.7z.022");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile21.uf@2631B03F56B6F7F527CF54.023", "GameLib.7z.023");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile22.uf@2232A13F56B6F7F72786F3.024", "GameLib.7z.024");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile29.uf@22653F3F56B6F7F901762F.025", "GameLib.7z.025");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile2.uf@2225D93F56B6F7FB3355F4.026", "GameLib.7z.026");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile29.uf@2734BF3F56B6F7FC247639.027", "GameLib.7z.027");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile5.uf@2525BB3F56B6F7FF3279A0.028", "GameLib.7z.028");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile21.uf@262CBB3F56B6F8002C1243.029", "GameLib.7z.029");
-            a++;
-            DownloadInfor.Text = ("Downloading..." + a + "/30");
-            Path.DownloadFile("http://hoparkgo9ma.tistory.com/attachment/cfile24.uf@2341043F56B6F802172E26.030", "GameLib.7z.030");
-            DownloadInfor.Text = ("Download Done!");
+
+            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMczdsV1cxYkpmR2M&export=download", "7za.exe");
+            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMekVmdno4bzhiM00&export=download", "Extract.cmd");
+            Path.DownloadFile("https://docs.google.com/uc?export=download&confirm=aAY9&id=0B5i3uwQXjFjMcUJha2VrdkdKTXM", "assets.7z");
+            Path.DownloadFile("https://docs.google.com/uc?export=download&confirm=gSFe&id=0B5i3uwQXjFjMQmVlc2U1Z3M3WTg", "libraries.7z");
+            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMRTl5VzkzdW0zTjQ&export=download", "userdata.7z");
+            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMLVNCMHFta0l0OEE&export=download", "versions.7z");
+            DirectoryInfo modir = new DirectoryInfo(@"mods\");
+            if (modir.Exists == false)
+            {
+                modir.Create();
+            }
+            DirectoryInfo modir2 = new DirectoryInfo(@"mods\1.7.10\");
+            if (modir2.Exists == false)
+            {
+                modir2.Create();
+            }
+            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMRUI4TUNnTkdpYms&export=download", modir + "Armourers-Workshop-1.7.10-0.38.1.98.jar");
+            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMZTgyQmdTMEJPM3M&export=download", modir + "b77_1710f.jar");
+            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMTFd1YkRaRnViNms&export=download", modir + "Chisel-1.7.10-1.5.6.jar");
+            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMbWttakkxVnhFVGs&export=download", modir + "CodeChickenCore-1.7.10-1.0.7.46-universal.jar");
+            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMNGRnNUk5U01Zejg&export=download", modir + "CraftGuide-Mod-1.7.10.zip");
+            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMbWpETXhUcFQ4M00&export=download", modir + "CustomMobSpawner 3.3.0.zip");
+            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMcEtsMlNyZTRxT28&export=download", modir + "CustomNPCs_1.7.10d.jar");
+            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMaC1nYWtQcEZPdlU&export=download", modir + "DrZharks MoCreatures Mod v6.3.1.zip");
+            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMYzg1MklGNVRmdU0&export=download", modir + "OptiFine_1.7.10_HD_U_C1.jar");
+            Path.DownloadFile("https://docs.google.com/uc?export=download&confirm=gD_r&id=0B5i3uwQXjFjMc1VmZVNNcFl4dVk", modir + "Project.Zagerb-0.1.2.jar");
+            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMWFpScFB4Ymd6UVk&export=download", modir + "Reis-Minimap-Mod-1.7.10.jar");
+            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMNzh1VTVXUFNyRW8&export=download", modir + "ShadersModCore-v2.3.31-mc1.7.10-f.jar");
+            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMTjhmWDRSSTg1Z2s&export=download", modir + "Thaumcraft-1.7.10-4.2.3.5.jar");
+            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMNEZPQUxoc09VWU0&export=download", modir + "TooManyItems2014_07_15_1.7.10_Forge.jar");
+            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMN0hzc3N0R2pMR1E&export=download", modir2 + "Baubles-1.7.10-1.0.1.10.jar");
+            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMd0NGVy1YYUpFeWc&export=download", modir2 + "CodeChickenLib-1.7.10-1.1.3.138-universal.jar");
+
+            ProcessStartInfo cmd = new ProcessStartInfo();
+            Process process = new Process();
+            cmd.FileName = (@"Extract.cmd");
+            cmd.WindowStyle = ProcessWindowStyle.Hidden;
+            cmd.CreateNoWindow = true;
+
+            cmd.UseShellExecute = false;
+            cmd.RedirectStandardInput = true;
+
+            process.EnableRaisingEvents = false;
+            process.StartInfo = cmd;
+            process.Start();
+
         }
     }
 }
