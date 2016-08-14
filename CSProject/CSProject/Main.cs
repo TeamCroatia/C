@@ -155,12 +155,27 @@ namespace CSProject
         {
             WebClient Path = new WebClient();
 
-            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMczdsV1cxYkpmR2M&export=download", "7za.exe");
-            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMekVmdno4bzhiM00&export=download", "Extract.cmd");
-            Path.DownloadFile("https://docs.google.com/uc?export=download&confirm=aAY9&id=0B5i3uwQXjFjMcUJha2VrdkdKTXM", "assets.7z");
-            Path.DownloadFile("https://docs.google.com/uc?export=download&confirm=gSFe&id=0B5i3uwQXjFjMQmVlc2U1Z3M3WTg", "libraries.7z");
-            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMRTl5VzkzdW0zTjQ&export=download", "userdata.7z");
-            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMLVNCMHFta0l0OEE&export=download", "versions.7z");
+            int a = 0;
+
+            a++;
+            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMczdsV1cxYkpmR2M&export=download"), @"7za.exe");
+            MessageBox.Show("" + a);
+            a++;
+            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMekVmdno4bzhiM00&export=download"), @"Extract.cmd");
+            MessageBox.Show("" + a);
+            a++;
+            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?export=download&confirm=aAY9&id=0B5i3uwQXjFjMcUJha2VrdkdKTXM"), @"assets.7z");
+            MessageBox.Show("" + a);
+            a++;
+            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?export=download&confirm=gSFe&id=0B5i3uwQXjFjMQmVlc2U1Z3M3WTg"), @"libraries.7z");
+            MessageBox.Show("" + a);
+            a++;
+            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMRTl5VzkzdW0zTjQ&export=download"), @"userdata.7z");
+            MessageBox.Show("" + a);
+            a++;
+            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMLVNCMHFta0l0OEE&export=download"), @"versions.7z");
+            MessageBox.Show("" + a);
+            a++;
             DirectoryInfo modir = new DirectoryInfo(@"mods\");
             if (modir.Exists == false)
             {
@@ -171,22 +186,22 @@ namespace CSProject
             {
                 modir2.Create();
             }
-            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMRUI4TUNnTkdpYms&export=download", modir + "Armourers-Workshop-1.7.10-0.38.1.98.jar");
-            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMZTgyQmdTMEJPM3M&export=download", modir + "b77_1710f.jar");
-            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMTFd1YkRaRnViNms&export=download", modir + "Chisel-1.7.10-1.5.6.jar");
-            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMbWttakkxVnhFVGs&export=download", modir + "CodeChickenCore-1.7.10-1.0.7.46-universal.jar");
-            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMNGRnNUk5U01Zejg&export=download", modir + "CraftGuide-Mod-1.7.10.zip");
-            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMbWpETXhUcFQ4M00&export=download", modir + "CustomMobSpawner 3.3.0.zip");
-            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMcEtsMlNyZTRxT28&export=download", modir + "CustomNPCs_1.7.10d.jar");
-            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMaC1nYWtQcEZPdlU&export=download", modir + "DrZharks MoCreatures Mod v6.3.1.zip");
-            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMYzg1MklGNVRmdU0&export=download", modir + "OptiFine_1.7.10_HD_U_C1.jar");
-            Path.DownloadFile("https://docs.google.com/uc?export=download&confirm=gD_r&id=0B5i3uwQXjFjMc1VmZVNNcFl4dVk", modir + "Project.Zagerb-0.1.2.jar");
-            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMWFpScFB4Ymd6UVk&export=download", modir + "Reis-Minimap-Mod-1.7.10.jar");
-            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMNzh1VTVXUFNyRW8&export=download", modir + "ShadersModCore-v2.3.31-mc1.7.10-f.jar");
-            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMTjhmWDRSSTg1Z2s&export=download", modir + "Thaumcraft-1.7.10-4.2.3.5.jar");
-            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMNEZPQUxoc09VWU0&export=download", modir + "TooManyItems2014_07_15_1.7.10_Forge.jar");
-            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMN0hzc3N0R2pMR1E&export=download", modir2 + "Baubles-1.7.10-1.0.1.10.jar");
-            Path.DownloadFile("https://docs.google.com/uc?id=0B5i3uwQXjFjMd0NGVy1YYUpFeWc&export=download", modir2 + "CodeChickenLib-1.7.10-1.1.3.138-universal.jar");
+            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMRUI4TUNnTkdpYms&export=download"), modir + @"Armourers-Workshop-1.7.10-0.38.1.98.jar");
+            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMZTgyQmdTMEJPM3M&export=download"), modir + @"b77_1710f.jar");
+            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMTFd1YkRaRnViNms&export=download"), modir + @"Chisel-1.7.10-1.5.6.jar");
+            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMbWttakkxVnhFVGs&export=download"), modir + @"CodeChickenCore-1.7.10-1.0.7.46-universal.jar");
+            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMNGRnNUk5U01Zejg&export=download"), modir + @"CraftGuide-Mod-1.7.10.zip");
+            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMbWpETXhUcFQ4M00&export=download"), modir + @"CustomMobSpawner 3.3.0.zip");
+            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMcEtsMlNyZTRxT28&export=download"), modir + @"CustomNPCs_1.7.10d.jar");
+            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMaC1nYWtQcEZPdlU&export=download"), modir + @"DrZharks MoCreatures Mod v6.3.1.zip");
+            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMYzg1MklGNVRmdU0&export=download"), modir + @"OptiFine_1.7.10_HD_U_C1.jar");
+            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?export=download&confirm=gD_r&id=0B5i3uwQXjFjMc1VmZVNNcFl4dVk"), modir + @"Project.Zagerb-0.1.2.jar");
+            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMWFpScFB4Ymd6UVk&export=download"), modir + @"Reis-Minimap-Mod-1.7.10.jar");
+            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMNzh1VTVXUFNyRW8&export=download"), modir + @"ShadersModCore-v2.3.31-mc1.7.10-f.jar");
+            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMTjhmWDRSSTg1Z2s&export=download"), modir + @"Thaumcraft-1.7.10-4.2.3.5.jar");
+            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMNEZPQUxoc09VWU0&export=download"), modir + @"TooManyItems2014_07_15_1.7.10_Forge.jar");
+            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMN0hzc3N0R2pMR1E&export=download"), modir2 + @"Baubles-1.7.10-1.0.1.10.jar");
+            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMd0NGVy1YYUpFeWc&export=download"), modir2 + @"CodeChickenLib-1.7.10-1.1.3.138-universal.jar");
 
             ProcessStartInfo cmd = new ProcessStartInfo();
             Process process = new Process();
