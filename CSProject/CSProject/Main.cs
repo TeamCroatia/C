@@ -5,11 +5,29 @@ using System.IO;
 using System.Diagnostics;
 using MaterialSkin.Controls;
 using MaterialSkin;
+using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Net.Security;
+using System.Net.Sockets;
+using System.Text;
+using CSProject.Properties;
+
+
 
 namespace CSProject
 {
     public partial class Main : MaterialForm
     {
+        private static string version = "Croatia Update 160206 1016";
+        private static string username;
+        private static string accesstoken;
+        private static string uuid;
+        private static List<string> libsList = new List<string>();
+
+        private Process process;
+
+
         public Main()
         {
             InitializeComponent();
@@ -30,6 +48,8 @@ namespace CSProject
             StreamWriter dw = new StreamWriter(@"Login.information");
             dw.WriteLine("0");
             dw.Close();
+            javaDir.Enabled = false;
+            arguments.Enabled = false;
         }
 
         //액세스 토큰 불러오기
@@ -46,7 +66,7 @@ namespace CSProject
 
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
-                string json = "{\"agent\":{\"name\":\"Minecraft\",\"version\":1},\"username\":\"" + username + "\",\"password\":\"" + password + "\",\"clientToken\":\"6c9d237d-8fbf-44ef-b46b-0b8a854bf391\"}";
+                string json = "{\"agent\":{\"name\":\"Minecraft\",\"version\":1},\"username\":\"" + username + "\",\"password\":\"" + password + "\"}";
 
                 streamWriter.Write(json);
                 streamWriter.Flush();
@@ -64,6 +84,33 @@ namespace CSProject
         //
         private void LoginButton_Click_1(object sender, EventArgs e)
         {
+            login();
+            LoginButton.Enabled = false;
+            UsernameField.Enabled = false;
+            PasswordField.Enabled = false;
+
+            username = UsernameField.Text;
+
+            if (IsLoginSuccess(ref username, PasswordField.Text, ref accesstoken, ref uuid))
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("로그인에 실패했습니다! 계정과 인터넷 연결상태를 확인하세요.");
+                LoginButton.Enabled = true;
+                UsernameField.Enabled = true;
+                PasswordField.Enabled = true;
+            }
+        }
+
+        private void GameStartButton_Click(object sender, EventArgs e)
+        {
+            MinecraftStart();
+        }
+
+        private void login()
+        {
             if (UsernameField.Text == "") //만약 UsernameField에 아무것도 입력되지 않으면
             {
                 MessageBox.Show("Username 필드가 입력되지 않았습니다!");
@@ -73,54 +120,12 @@ namespace CSProject
             {
                 MessageBox.Show("Password 필드가 입력되지 않았습니다!");
             }
-
-            else
-            {
-                //액세스토큰 받아오기
-                ObtainAccessToken(UsernameField.Text, PasswordField.Text);
-                string Token = GetAccessToken();
-
-                MessageBox.Show("" + Token, "Token"); //액세스토큰 정보 띄우기
-
-                if (File.Exists(@"AccessToken.txt")) //만약 먼저 저장된 액세스토큰이 존재하면
-                {
-                    File.Delete(@"AccessToken.txt"); //삭☆제☆
-                }
-
-                //엑세스토큰 정보 기록
-                StreamWriter dw = new StreamWriter(@"AccessToken.txt");
-                dw.WriteLine("" + Token);
-                dw.Close();
-
-                //로그인 여부 기록
-                if (File.Exists(@"Login.infomation"))
-                {
-                    File.Delete(@"Login.information"); //삭☆제☆
-                }
-                StreamWriter login = new StreamWriter(@"Login.information");
-                login.WriteLine("1");
-                login.Close();
-
-            }
         }
 
-        private void CheckTokenButton_Click(object sender, EventArgs e)
+        private void StartMC()
         {
-            if (File.Exists(@"AccessToken.txt")) //만약 AccessToken.txt란 파일이 존재하면
-            {
-                string Token = File.ReadAllText(@"AccessToken.txt");
-                MessageBox.Show("" + Token, "Token");
-            }
-            else
-            {
-                MessageBox.Show("컴퓨터에 저장된 토큰이 없습니다! 로그인을 해주세요.");
-            }
-        }
-
-        private void GameStartButton_Click(object sender, EventArgs e)
-        {
-
             string code = File.ReadAllText(@"AccessToken.txt");
+
             //이하 구글링으로 얻은 실행코드.
             ///string strCmdText;
             ///strCmdText = "java -Xms512m -Xmx1g -Djava.library.path=natives/ -cp \"minecraft.jar; lwjgl.jar; lwjgl_util.jar\" net.minecraft.client.Minecraft " + "My Email" + " " + Code;
@@ -130,7 +135,7 @@ namespace CSProject
             ///Process.Start("cmd.exe");
 
             String mccmd;
-            mccmd = "java -Xms512m -Xmx1g -Djava.library.path=natives/ -cp \"minecraft.jar; lwjgl.jar; lwjgl_util.jar\" net.minecraft.client.Minecraft " + "" +UsernameField + " " + code;
+            mccmd = "java -Xms512m -Xmx1g -Djava.library.path=natives/ -cp \"minecraft.jar; lwjgl.jar; lwjgl_util.jar\" net.minecraft.client.Minecraft " + "" + UsernameField + " " + code;
 
             ProcessStartInfo cmd = new ProcessStartInfo();
             Process process = new Process();
@@ -144,78 +149,179 @@ namespace CSProject
             process.EnableRaisingEvents = false;
             process.StartInfo = cmd;
             process.Start();
-            process.StandardInput.Write(@"" +mccmd + Environment.NewLine);
+            process.StandardInput.Write(@"" + mccmd + Environment.NewLine);
             // 명령어를 보낼때는 꼭 마무리를 해줘야 한다. 그래서 마지막에 NewLine가 필요하다
             process.StandardInput.Close();
 
             //MessageBox.Show("" + code, "Token");
         }
 
-        private void DataDownloadButton_Click(object sender, EventArgs e)
+        private void MinecraftStart()  //코드제공: Winrobrin
         {
-            WebClient Path = new WebClient();
+            if (!(Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "\\natives")))
+                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "\\natives");
 
-            int a = 0;
+            string arguments = "-XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump " + this.arguments.Text + " -Djava.library.path=\"" + AppDomain.CurrentDomain.BaseDirectory + @"\natives"" -cp """;
 
-            a++;
-            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMczdsV1cxYkpmR2M&export=download"), @"7za.exe");
-            MessageBox.Show("" + a);
-            a++;
-            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMekVmdno4bzhiM00&export=download"), @"Extract.cmd");
-            MessageBox.Show("" + a);
-            a++;
-            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?export=download&confirm=aAY9&id=0B5i3uwQXjFjMcUJha2VrdkdKTXM"), @"assets.7z");
-            MessageBox.Show("" + a);
-            a++;
-            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?export=download&confirm=gSFe&id=0B5i3uwQXjFjMQmVlc2U1Z3M3WTg"), @"libraries.7z");
-            MessageBox.Show("" + a);
-            a++;
-            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMRTl5VzkzdW0zTjQ&export=download"), @"userdata.7z");
-            MessageBox.Show("" + a);
-            a++;
-            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMLVNCMHFta0l0OEE&export=download"), @"versions.7z");
-            MessageBox.Show("" + a);
-            a++;
-            DirectoryInfo modir = new DirectoryInfo(@"mods\");
-            if (modir.Exists == false)
+            foreach (string item in libsList)
+                arguments += item + ';';
+            arguments += AppDomain.CurrentDomain.BaseDirectory + "version\\" + version + "\\" + version + ".jar\" net.minecraft.client.main.Main --username " + username + " --version " + version + " --gameDir \"" + Application.StartupPath + @""" --assetsDir """ + AppDomain.CurrentDomain.BaseDirectory + "assets\" --assetIndex 1.7.10 --accessToken " + accesstoken + " --uuid " + uuid + " --userProperties {}";
+
+            process = new Process()
             {
-                modir.Create();
-            }
-            DirectoryInfo modir2 = new DirectoryInfo(@"mods\1.7.10\");
-            if (modir2.Exists == false)
-            {
-                modir2.Create();
-            }
-            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMRUI4TUNnTkdpYms&export=download"), modir + @"Armourers-Workshop-1.7.10-0.38.1.98.jar");
-            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMZTgyQmdTMEJPM3M&export=download"), modir + @"b77_1710f.jar");
-            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMTFd1YkRaRnViNms&export=download"), modir + @"Chisel-1.7.10-1.5.6.jar");
-            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMbWttakkxVnhFVGs&export=download"), modir + @"CodeChickenCore-1.7.10-1.0.7.46-universal.jar");
-            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMNGRnNUk5U01Zejg&export=download"), modir + @"CraftGuide-Mod-1.7.10.zip");
-            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMbWpETXhUcFQ4M00&export=download"), modir + @"CustomMobSpawner 3.3.0.zip");
-            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMcEtsMlNyZTRxT28&export=download"), modir + @"CustomNPCs_1.7.10d.jar");
-            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMaC1nYWtQcEZPdlU&export=download"), modir + @"DrZharks MoCreatures Mod v6.3.1.zip");
-            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMYzg1MklGNVRmdU0&export=download"), modir + @"OptiFine_1.7.10_HD_U_C1.jar");
-            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?export=download&confirm=gD_r&id=0B5i3uwQXjFjMc1VmZVNNcFl4dVk"), modir + @"Project.Zagerb-0.1.2.jar");
-            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMWFpScFB4Ymd6UVk&export=download"), modir + @"Reis-Minimap-Mod-1.7.10.jar");
-            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMNzh1VTVXUFNyRW8&export=download"), modir + @"ShadersModCore-v2.3.31-mc1.7.10-f.jar");
-            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMTjhmWDRSSTg1Z2s&export=download"), modir + @"Thaumcraft-1.7.10-4.2.3.5.jar");
-            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMNEZPQUxoc09VWU0&export=download"), modir + @"TooManyItems2014_07_15_1.7.10_Forge.jar");
-            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMN0hzc3N0R2pMR1E&export=download"), modir2 + @"Baubles-1.7.10-1.0.1.10.jar");
-            Path.DownloadFile(new Uri(@"https://docs.google.com/uc?id=0B5i3uwQXjFjMd0NGVy1YYUpFeWc&export=download"), modir2 + @"CodeChickenLib-1.7.10-1.1.3.138-universal.jar");
+                EnableRaisingEvents = true,
+                StartInfo = new ProcessStartInfo()
+                {
+                    FileName = (javaCheckBox.Checked) ? javaDir.Text : "java.exe",
+                    Arguments = arguments,
+                    CreateNoWindow = true,
+                    UseShellExecute = false,
+                    RedirectStandardError = true,
+                    RedirectStandardOutput = true
+                }
+            };
 
-            ProcessStartInfo cmd = new ProcessStartInfo();
-            Process process = new Process();
-            cmd.FileName = (@"Extract.cmd");
-            cmd.WindowStyle = ProcessWindowStyle.Hidden;
-            cmd.CreateNoWindow = true;
-
-            cmd.UseShellExecute = false;
-            cmd.RedirectStandardInput = true;
-
-            process.EnableRaisingEvents = false;
-            process.StartInfo = cmd;
             process.Start();
+            process.BeginErrorReadLine();
+            process.BeginOutputReadLine();
 
+            console.Clear();
+
+            process.OutputDataReceived += process_OutputDataReceived;
+            process.Exited += process_Exited;
+        }
+
+        private void InitializeLibraries(string verDir)
+        {
+            StreamReader reader = new StreamReader(verDir + "\\" + version + ".json");
+            JArray jArray = JArray.Parse(JObject.Parse(reader.ReadToEnd())["libraries"].ToString());
+            reader.Close();
+            int count = jArray.Count;
+            foreach (JObject itemObj in jArray)
+            {
+                string pack = itemObj["name"].ToString().Split(':')[0];
+                string name = itemObj["name"].ToString().Split(':')[1];
+                string ver = itemObj["name"].ToString().Split(':')[2];
+                string fileName = name + "-" + ver;
+
+                if (itemObj.ToString().Contains("natives"))
+                {
+                    fileName += "-" + itemObj["natives"]["windows"];
+                    fileName = fileName.Replace("${arch}", (Environment.Is64BitOperatingSystem) ? "64" : "32");
+                }
+                fileName += ".jar";
+
+                string url = "https://libraries.minecraft.net/" + pack.Replace('.', '/') + "/" + name + "/" + ver + "/" + fileName;
+
+                if (itemObj.ToString().Contains("rules"))
+                {
+                    foreach (JObject itemRules in itemObj["rules"])
+                    {
+                        if (itemRules.ToString().Contains("os"))
+                        {
+                            if ((itemRules["action"].ToString() == "allow" && itemRules["os"]["name"].ToString() == "windows") || (itemRules["action"].ToString() == "disallow" && itemRules["os"]["name"].ToString() != "windows"))
+                            {
+                                libsList.Add(AppDomain.CurrentDomain.BaseDirectory + "libraries\\" + fileName);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    libsList.Add(AppDomain.CurrentDomain.BaseDirectory + "libraries\\" + fileName);
+                }
+            }
+
+            if (!(Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "libraries")))
+                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "libraries");
+        }
+
+        private void process_OutputDataReceived(object sender, DataReceivedEventArgs e)
+        {
+            CheckForIllegalCrossThreadCalls = false;
+            console.AppendText(Environment.NewLine + e.Data);
+        }
+
+        private void process_Exited(object sender, EventArgs e)
+        {
+
+        }
+
+        private void arguCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            arguments.Enabled = arguCheckBox.Checked;
+        }
+
+        private void javaCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            javaDir.Enabled = javaCheckBox.Checked;
+        }
+        private static bool IsLoginSuccess(ref string username, string password, ref string accesstoken, ref string uuid)
+        {
+            try
+            {
+                string request = "{\"agent\":{\"name\":\"Minecraft\",\"version\":1},\"username\":\"" + username + "\",\"password\":\"" + password + "\"}";
+
+                SslStream stream = new SslStream(new TcpClient("authserver.mojang.com", 443).GetStream());
+                stream.AuthenticateAsClient("authserver.mojang.com");
+
+                List<string> http_request = new List<string>()
+                {
+                    "POST /authenticate HTTP/1.1",
+                    "Host: authserver.mojang.com",
+                    "Content-Type: application/json",
+                    "Content-Length: " + Encoding.ASCII.GetBytes(request).Length,
+                    "Connection: close",
+                    "",
+                    request
+                };
+                stream.Write(Encoding.ASCII.GetBytes(string.Join("\r\n", http_request.ToArray())));
+
+                StreamReader reader = new StreamReader(stream);
+                string raw_result = reader.ReadToEnd();
+                reader.Close();
+
+                if (raw_result.StartsWith("HTTP/1.1"))
+                {
+                    if (int.Parse(raw_result.Split(' ')[1]) == 200)
+                    {
+                        string result = raw_result.Substring(raw_result.IndexOf("\r\n\r\n") + 4);
+                        string[] temp = result.Split(new string[] { "accessToken\":\"" }, StringSplitOptions.RemoveEmptyEntries);
+                        if (temp.Length >= 2) { accesstoken = temp[1].Split('"')[0]; }
+                        temp = result.Split(new string[] { "name\":\"" }, StringSplitOptions.RemoveEmptyEntries);
+                        if (temp.Length >= 2) { username = temp[1].Split('"')[0]; }
+                        temp = result.Split(new string[] { "availableProfiles\":[{\"id\":\"" }, StringSplitOptions.RemoveEmptyEntries);
+                        if (temp.Length >= 2) { uuid = temp[1].Split('"')[0]; }
+                        return (result.Contains("availableProfiles\":[]}")) ? false : true;
+                    }
+                }
+                return false;
+            }
+            catch { return false; }
+        }
+
+        private void javaCheckBox_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (javaCheckBox.Checked == true)
+            {
+                javaDir.Enabled = true;
+            }
+            if (javaCheckBox.Checked == false)
+            {
+                javaDir.Enabled = false;
+            }
+        }
+
+        private void arguCheckBox_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (arguCheckBox.Checked == true)
+            {
+                arguments.Enabled = true;
+            }
+            if (arguCheckBox.Checked == false)
+            {
+                arguments.Enabled = false;
+            }
         }
     }
 }

@@ -35,8 +35,11 @@
             this.LoginButton = new MaterialSkin.Controls.MaterialFlatButton();
             this.CheckTokenButton = new MaterialSkin.Controls.MaterialFlatButton();
             this.GameStartButton = new MaterialSkin.Controls.MaterialFlatButton();
-            this.DataDownloadButton = new MaterialSkin.Controls.MaterialFlatButton();
-            this.DownloadInfor = new MaterialSkin.Controls.MaterialLabel();
+            this.console = new System.Windows.Forms.TextBox();
+            this.arguCheckBox = new MaterialSkin.Controls.MaterialCheckBox();
+            this.arguments = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.javaDir = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.javaCheckBox = new MaterialSkin.Controls.MaterialCheckBox();
             this.SuspendLayout();
             // 
             // UsernameLabel
@@ -46,7 +49,7 @@
             this.UsernameLabel.Depth = 0;
             this.UsernameLabel.Font = new System.Drawing.Font("Roboto", 11F);
             this.UsernameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.UsernameLabel.Location = new System.Drawing.Point(68, 82);
+            this.UsernameLabel.Location = new System.Drawing.Point(76, 72);
             this.UsernameLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.UsernameLabel.Name = "UsernameLabel";
             this.UsernameLabel.Size = new System.Drawing.Size(76, 18);
@@ -60,7 +63,7 @@
             this.PasswordLabel.Depth = 0;
             this.PasswordLabel.Font = new System.Drawing.Font("Roboto", 11F);
             this.PasswordLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.PasswordLabel.Location = new System.Drawing.Point(68, 126);
+            this.PasswordLabel.Location = new System.Drawing.Point(76, 102);
             this.PasswordLabel.MouseState = MaterialSkin.MouseState.HOVER;
             this.PasswordLabel.Name = "PasswordLabel";
             this.PasswordLabel.Size = new System.Drawing.Size(74, 18);
@@ -71,7 +74,7 @@
             // 
             this.UsernameField.Depth = 0;
             this.UsernameField.Hint = "";
-            this.UsernameField.Location = new System.Drawing.Point(150, 82);
+            this.UsernameField.Location = new System.Drawing.Point(158, 72);
             this.UsernameField.MouseState = MaterialSkin.MouseState.HOVER;
             this.UsernameField.Name = "UsernameField";
             this.UsernameField.PasswordChar = '\0';
@@ -86,7 +89,7 @@
             // 
             this.PasswordField.Depth = 0;
             this.PasswordField.Hint = "";
-            this.PasswordField.Location = new System.Drawing.Point(150, 125);
+            this.PasswordField.Location = new System.Drawing.Point(158, 101);
             this.PasswordField.MouseState = MaterialSkin.MouseState.HOVER;
             this.PasswordField.Name = "PasswordField";
             this.PasswordField.PasswordChar = '\0';
@@ -101,8 +104,9 @@
             // 
             this.LoginButton.AutoSize = true;
             this.LoginButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.LoginButton.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.LoginButton.Depth = 0;
-            this.LoginButton.Location = new System.Drawing.Point(368, 98);
+            this.LoginButton.Location = new System.Drawing.Point(372, 80);
             this.LoginButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.LoginButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.LoginButton.Name = "LoginButton";
@@ -110,7 +114,7 @@
             this.LoginButton.Size = new System.Drawing.Size(52, 36);
             this.LoginButton.TabIndex = 4;
             this.LoginButton.Text = "Login";
-            this.LoginButton.UseVisualStyleBackColor = true;
+            this.LoginButton.UseVisualStyleBackColor = false;
             this.LoginButton.Click += new System.EventHandler(this.LoginButton_Click_1);
             // 
             // CheckTokenButton
@@ -118,7 +122,7 @@
             this.CheckTokenButton.AutoSize = true;
             this.CheckTokenButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CheckTokenButton.Depth = 0;
-            this.CheckTokenButton.Location = new System.Drawing.Point(13, 248);
+            this.CheckTokenButton.Location = new System.Drawing.Point(13, 133);
             this.CheckTokenButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CheckTokenButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.CheckTokenButton.Name = "CheckTokenButton";
@@ -127,14 +131,13 @@
             this.CheckTokenButton.TabIndex = 5;
             this.CheckTokenButton.Text = "AccessToken Information";
             this.CheckTokenButton.UseVisualStyleBackColor = true;
-            this.CheckTokenButton.Click += new System.EventHandler(this.CheckTokenButton_Click);
             // 
             // GameStartButton
             // 
             this.GameStartButton.AutoSize = true;
             this.GameStartButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.GameStartButton.Depth = 0;
-            this.GameStartButton.Location = new System.Drawing.Point(188, 200);
+            this.GameStartButton.Location = new System.Drawing.Point(224, 133);
             this.GameStartButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.GameStartButton.MouseState = MaterialSkin.MouseState.HOVER;
             this.GameStartButton.Name = "GameStartButton";
@@ -145,43 +148,95 @@
             this.GameStartButton.UseVisualStyleBackColor = true;
             this.GameStartButton.Click += new System.EventHandler(this.GameStartButton_Click);
             // 
-            // DataDownloadButton
+            // console
             // 
-            this.DataDownloadButton.AutoSize = true;
-            this.DataDownloadButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.DataDownloadButton.Depth = 0;
-            this.DataDownloadButton.Location = new System.Drawing.Point(13, 200);
-            this.DataDownloadButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.DataDownloadButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.DataDownloadButton.Name = "DataDownloadButton";
-            this.DataDownloadButton.Primary = false;
-            this.DataDownloadButton.Size = new System.Drawing.Size(167, 36);
-            this.DataDownloadButton.TabIndex = 7;
-            this.DataDownloadButton.Text = "Resources Download";
-            this.DataDownloadButton.UseVisualStyleBackColor = true;
-            this.DataDownloadButton.Click += new System.EventHandler(this.DataDownloadButton_Click);
+            this.console.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.console.Location = new System.Drawing.Point(12, 249);
+            this.console.Multiline = true;
+            this.console.Name = "console";
+            this.console.ReadOnly = true;
+            this.console.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.console.Size = new System.Drawing.Size(476, 89);
+            this.console.TabIndex = 8;
             // 
-            // DownloadInfor
+            // arguCheckBox
             // 
-            this.DownloadInfor.AutoSize = true;
-            this.DownloadInfor.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.DownloadInfor.Depth = 0;
-            this.DownloadInfor.Font = new System.Drawing.Font("Roboto", 11F);
-            this.DownloadInfor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.DownloadInfor.Location = new System.Drawing.Point(37, 165);
-            this.DownloadInfor.MouseState = MaterialSkin.MouseState.HOVER;
-            this.DownloadInfor.Name = "DownloadInfor";
-            this.DownloadInfor.Size = new System.Drawing.Size(103, 18);
-            this.DownloadInfor.TabIndex = 8;
-            this.DownloadInfor.Text = "File Download";
+            this.arguCheckBox.AutoSize = true;
+            this.arguCheckBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.arguCheckBox.Depth = 0;
+            this.arguCheckBox.Font = new System.Drawing.Font("Roboto", 10F);
+            this.arguCheckBox.Location = new System.Drawing.Point(9, 206);
+            this.arguCheckBox.Margin = new System.Windows.Forms.Padding(0);
+            this.arguCheckBox.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.arguCheckBox.MouseState = MaterialSkin.MouseState.HOVER;
+            this.arguCheckBox.Name = "arguCheckBox";
+            this.arguCheckBox.Ripple = true;
+            this.arguCheckBox.Size = new System.Drawing.Size(130, 30);
+            this.arguCheckBox.TabIndex = 11;
+            this.arguCheckBox.Text = "JVM Arguments";
+            this.arguCheckBox.UseVisualStyleBackColor = false;
+            this.arguCheckBox.CheckedChanged += new System.EventHandler(this.arguCheckBox_CheckedChanged_1);
+            // 
+            // arguments
+            // 
+            this.arguments.Depth = 0;
+            this.arguments.Hint = "";
+            this.arguments.Location = new System.Drawing.Point(158, 210);
+            this.arguments.MouseState = MaterialSkin.MouseState.HOVER;
+            this.arguments.Name = "arguments";
+            this.arguments.PasswordChar = '\0';
+            this.arguments.SelectedText = "";
+            this.arguments.SelectionLength = 0;
+            this.arguments.SelectionStart = 0;
+            this.arguments.Size = new System.Drawing.Size(330, 23);
+            this.arguments.TabIndex = 12;
+            this.arguments.Text = "-Xmx1G -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:-UseAdaptiveSizePolicy" +
+    " -Xmn128M";
+            this.arguments.UseSystemPasswordChar = false;
+            // 
+            // javaDir
+            // 
+            this.javaDir.Depth = 0;
+            this.javaDir.Hint = "";
+            this.javaDir.Location = new System.Drawing.Point(158, 178);
+            this.javaDir.MouseState = MaterialSkin.MouseState.HOVER;
+            this.javaDir.Name = "javaDir";
+            this.javaDir.PasswordChar = '\0';
+            this.javaDir.SelectedText = "";
+            this.javaDir.SelectionLength = 0;
+            this.javaDir.SelectionStart = 0;
+            this.javaDir.Size = new System.Drawing.Size(330, 23);
+            this.javaDir.TabIndex = 14;
+            this.javaDir.UseSystemPasswordChar = false;
+            // 
+            // javaCheckBox
+            // 
+            this.javaCheckBox.AutoSize = true;
+            this.javaCheckBox.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.javaCheckBox.Depth = 0;
+            this.javaCheckBox.Font = new System.Drawing.Font("Roboto", 10F);
+            this.javaCheckBox.Location = new System.Drawing.Point(9, 174);
+            this.javaCheckBox.Margin = new System.Windows.Forms.Padding(0);
+            this.javaCheckBox.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.javaCheckBox.MouseState = MaterialSkin.MouseState.HOVER;
+            this.javaCheckBox.Name = "javaCheckBox";
+            this.javaCheckBox.Ripple = true;
+            this.javaCheckBox.Size = new System.Drawing.Size(97, 30);
+            this.javaCheckBox.TabIndex = 13;
+            this.javaCheckBox.Text = "Executable";
+            this.javaCheckBox.UseVisualStyleBackColor = false;
+            this.javaCheckBox.CheckedChanged += new System.EventHandler(this.javaCheckBox_CheckedChanged_1);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 300);
-            this.Controls.Add(this.DownloadInfor);
-            this.Controls.Add(this.DataDownloadButton);
+            this.ClientSize = new System.Drawing.Size(500, 350);
+            this.Controls.Add(this.javaDir);
+            this.Controls.Add(this.javaCheckBox);
+            this.Controls.Add(this.arguments);
+            this.Controls.Add(this.arguCheckBox);
+            this.Controls.Add(this.console);
             this.Controls.Add(this.GameStartButton);
             this.Controls.Add(this.CheckTokenButton);
             this.Controls.Add(this.LoginButton);
@@ -189,8 +244,8 @@
             this.Controls.Add(this.UsernameField);
             this.Controls.Add(this.PasswordLabel);
             this.Controls.Add(this.UsernameLabel);
-            this.MaximumSize = new System.Drawing.Size(500, 300);
-            this.MinimumSize = new System.Drawing.Size(500, 300);
+            this.MaximumSize = new System.Drawing.Size(500, 350);
+            this.MinimumSize = new System.Drawing.Size(500, 350);
             this.Name = "Main";
             this.Text = "TeamCroatia Client";
             this.Load += new System.EventHandler(this.Main_Load);
@@ -208,8 +263,11 @@
         private MaterialSkin.Controls.MaterialFlatButton LoginButton;
         private MaterialSkin.Controls.MaterialFlatButton CheckTokenButton;
         private MaterialSkin.Controls.MaterialFlatButton GameStartButton;
-        private MaterialSkin.Controls.MaterialFlatButton DataDownloadButton;
-        private MaterialSkin.Controls.MaterialLabel DownloadInfor;
+        private System.Windows.Forms.TextBox console;
+        private MaterialSkin.Controls.MaterialCheckBox arguCheckBox;
+        private MaterialSkin.Controls.MaterialSingleLineTextField arguments;
+        private MaterialSkin.Controls.MaterialSingleLineTextField javaDir;
+        private MaterialSkin.Controls.MaterialCheckBox javaCheckBox;
     }
 }
 
