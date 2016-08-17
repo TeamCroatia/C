@@ -7,6 +7,7 @@ using MaterialSkin.Controls;
 using MaterialSkin;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Net.Security;
 using System.Net.Sockets;
@@ -22,7 +23,9 @@ namespace CSProject
         private static string version = "Croatia Update 160206 1016";
         private static string username;
         private static string accesstoken;
+        private static string ACCESS_TOKEN;
         private static string uuid;
+        private static string accesstokendata;
         private static List<string> libsList = new List<string>();
 
         private Process process;
@@ -53,7 +56,6 @@ namespace CSProject
         }
 
         //액세스 토큰 불러오기
-        string ACCESS_TOKEN;
         public string GetAccessToken()
         {
             return ACCESS_TOKEN;
@@ -97,7 +99,7 @@ namespace CSProject
             }
             else
             {
-                MessageBox.Show("로그인에 실패했습니다! 계정과 인터넷 연결상태를 확인하세요.");
+                MessageBox.Show("로그인에 실패했습니다! 계정 문제일 수 있습니다.");
                 LoginButton.Enabled = true;
                 UsernameField.Enabled = true;
                 PasswordField.Enabled = true;
@@ -106,7 +108,8 @@ namespace CSProject
 
         private void GameStartButton_Click(object sender, EventArgs e)
         {
-            MinecraftStart();
+            //MinecraftStart();
+            StartMC();
         }
 
         private void login()
@@ -124,7 +127,7 @@ namespace CSProject
 
         private void StartMC()
         {
-            string code = File.ReadAllText(@"AccessToken.txt");
+            string code = ACCESS_TOKEN;
 
             //이하 구글링으로 얻은 실행코드.
             ///string strCmdText;
@@ -135,7 +138,7 @@ namespace CSProject
             ///Process.Start("cmd.exe");
 
             String mccmd;
-            mccmd = "java -Xms512m -Xmx1g -Djava.library.path=natives/ -cp \"minecraft.jar; lwjgl.jar; lwjgl_util.jar\" net.minecraft.client.Minecraft " + "" + UsernameField + " " + code;
+            mccmd = "\"C:\\Program Files (x86)\\Minecraft\\runtime\\jre-x64\\1.8.0_25\\bin\\javaw.exe\" - XX:HeapDumpPath = MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump - Xmx1G - XX:+UseConcMarkSweepGC - XX:+CMSIncrementalMode - XX:-UseAdaptiveSizePolicy - Xmn128M \"-Dos.name=Windows 10\" - Dos.version = 10.0 \"-Djava.library.path=C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\versions\\Croatia Update 160206 1016\\Croatia Update 160206 1016-natives-222206811236533\" - cp C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\net\\minecraftforge\\forge\\1.7.10 - 10.13.4.1558 - 1.7.10\\forge - 1.7.10 - 10.13.4.1558 - 1.7.10.jar; C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\net\\minecraft\\launchwrapper\\1.12\\launchwrapper - 1.12.jar; C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\org\\ow2\\asm\\asm - all\\5.0.3\\asm - all - 5.0.3.jar; C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\com\\typesafe\\akka\\akka - actor_2.11\\2.3.3\\akka - actor_2.11 - 2.3.3.jar; C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\com\\typesafe\\config\\1.2.1\\config - 1.2.1.jar; C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\org\\scala - lang\\scala - actors - migration_2.11\\1.1.0\\scala - actors - migration_2.11 - 1.1.0.jar; C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\org\\scala - lang\\scala - compiler\\2.11.1\\scala - compiler - 2.11.1.jar; C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\org\\scala - lang\\plugins\\scala - continuations - library_2.11\\1.0.2\\scala - continuations - library_2.11 - 1.0.2.jar; C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\org\\scala-lang\\plugins\\scala-continuations-plugin_2.11.1\\1.0.2\\scala-continuations-plugin_2.11.1-1.0.2.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\org\\scala-lang\\scala-library\\2.11.1\\scala-library-2.11.1.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\org\\scala-lang\\scala-parser-combinators_2.11\\1.0.1\\scala-parser-combinators_2.11-1.0.1.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\org\\scala-lang\\scala-reflect\\2.11.1\\scala-reflect-2.11.1.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\org\\scala-lang\\scala-swing_2.11\\1.0.1\\scala-swing_2.11-1.0.1.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\org\\scala-lang\\scala-xml_2.11\\1.0.2\\scala-xml_2.11-1.0.2.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\lzma\\lzma\\0.0.1\\lzma-0.0.1.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\net\\sf\\jopt-simple\\jopt-simple\\4.5\\jopt-simple-4.5.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\com\\google\\guava\\guava\\17.0\\guava-17.0.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\org\\apache\\commons\\commons-lang3\\3.3.2\\commons-lang3-3.3.2.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\com\\mojang\\netty\\1.6\\netty-1.6.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\com\\mojang\\realms\\1.3.5\\realms-1.3.5.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\org\\apache\\commons\\commons-compress\\1.8.1\\commons-compress-1.8.1.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\org\\apache\\httpcomponents\\httpclient\\4.3.3\\httpclient-4.3.3.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\commons-logging\\commons-logging\\1.1.3\\commons-logging-1.1.3.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\org\\apache\\httpcomponents\\httpcore\\4.3.2\\httpcore-4.3.2.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\java3d\\vecmath\\1.3.1\\vecmath-1.3.1.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\net\\sf\\trove4j\\trove4j\\3.0.3\\trove4j-3.0.3.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\com\\ibm\\icu\\icu4j-core-mojang\\51.2\\icu4j-core-mojang-51.2.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\net\\sf\\jopt-simple\\jopt-simple\\4.5\\jopt-simple-4.5.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\com\\paulscode\\codecjorbis\\20101023\\codecjorbis-20101023.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\com\\paulscode\\codecwav\\20101023\\codecwav-20101023.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\com\\paulscode\\libraryjavasound\\20101123\\libraryjavasound-20101123.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\com\\paulscode\\librarylwjglopenal\\20100824\\librarylwjglopenal-20100824.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\com\\paulscode\\soundsystem\\20120107\\soundsystem-20120107.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\io\\netty\\netty-all\\4.0.10.Final\\netty-all-4.0.10.Final.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\com\\google\\guava\\guava\\15.0\\guava-15.0.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\org\\apache\\commons\\commons-lang3\\3.1\\commons-lang3-3.1.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\commons-io\\commons-io\\2.4\\commons-io-2.4.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\commons-codec\\commons-codec\\1.9\\commons-codec-1.9.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\net\\java\\jinput\\jinput\\2.0.5\\jinput-2.0.5.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\net\\java\\jutils\\jutils\\1.0.0\\jutils-1.0.0.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\com\\google\\code\\gson\\gson\\2.2.4\\gson-2.2.4.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\com\\mojang\\authlib\\1.5.21\\authlib-1.5.21.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\org\\apache\\logging\\log4j\\log4j-api\\2.0-beta9\\log4j-api-2.0-beta9.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\org\\apache\\logging\\log4j\\log4j-core\\2.0-beta9\\log4j-core-2.0-beta9.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\org\\lwjgl\\lwjgl\\lwjgl\\2.9.1\\lwjgl-2.9.1.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\org\\lwjgl\\lwjgl\\lwjgl_util\\2.9.1\\lwjgl_util-2.9.1.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\libraries\\tv\\twitch\\twitch\\5.16\\twitch-5.16.jar;C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\versions\\1.7.10\\1.7.10.jar net.minecraft.launchwrapper.Launch --username "+ username +" --version \"Croatia Update 160206 1016\" --gameDir C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft --assetsDir C:\\Users\\Administrator\\AppData\\Roaming\\.minecraft\\assets --assetIndex 1.7.10 --uuid "+ uuid +" --accessToken "+ accesstoken +" --userProperties {} --userType legacy --tweakClass cpw.mods.fml.common.launcher.FMLTweaker --nativeLauncherVersion 307";
 
             ProcessStartInfo cmd = new ProcessStartInfo();
             Process process = new Process();
@@ -321,6 +324,125 @@ namespace CSProject
             if (arguCheckBox.Checked == false)
             {
                 arguments.Enabled = false;
+            }
+        }
+
+        private async void DownloadButton_Click_1(object sender, EventArgs e)
+        {
+            DownloadButton.Enabled = false;
+            try
+            {
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMczdsV1cxYkpmR2M&export=download"), @"7za.exe");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMajFZbE45ZGMxTTA&export=download"), @"Extract.cmd");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMSmM0dmlhZkhDX28&export=download"), @"assets.7z.001");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMRDZaTVY0clcySzA&export=download"), @"assets.7z.002");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMbUZDTXdZQVNSTFk&export=download"), @"assets.7z.003");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMa0F3MTJDNEVwSmM&export=download"), @"assets.7z.004");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMVDhXSnR1RWJ6QWc&export=download"), @"assets.7z.005");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMMGtYZmFjV0x4Yk0&export=download"), @"libraries.7z.001");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMS3ZiYjlsUFB1c0E&export=download"), @"libraries.7z.002");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMQnd2dDhzZ2s1enM&export=download"), @"libraries.7z.003");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMRTl5VzkzdW0zTjQ&export=download"), @"userdata.7z");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMLVNCMHFta0l0OEE&export=download"), @"versions.7z");
+                Progress.Value++;
+                DirectoryInfo modir = new DirectoryInfo(@"mods\");
+                if (modir.Exists == false)
+                {
+                    modir.Create();
+                }
+                DirectoryInfo modir2 = new DirectoryInfo(@"mods\1.7.10\");
+                if (modir2.Exists == false)
+                {
+                    modir2.Create();
+                }
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMRUI4TUNnTkdpYms&export=download"), modir + @"Armourers-Workshop-1.7.10-0.38.1.98.jar");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMZTgyQmdTMEJPM3M&export=download"), modir + @"b77_1710f.jar");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMTFd1YkRaRnViNms&export=download"), modir + @"Chisel-1.7.10-1.5.6.jar");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMbWttakkxVnhFVGs&export=download"), modir + @"CodeChickenCore-1.7.10-1.0.7.46-universal.jar");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMNGRnNUk5U01Zejg&export=download"), modir + @"CraftGuide-Mod-1.7.10.zip");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMbWpETXhUcFQ4M00&export=download"), modir + @"CustomMobSpawner 3.3.0.zip");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMcEtsMlNyZTRxT28&export=download"), modir + @"CustomNPCs_1.7.10d.jar");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMaC1nYWtQcEZPdlU&export=download"), modir + @"DrZharks MoCreatures Mod v6.3.1.zip");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMYzg1MklGNVRmdU0&export=download"), modir + @"OptiFine_1.7.10_HD_U_C1.jar");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMNmFWQlQ1ZUhUdHM&export=download"), modir + @"Project.Zagerb-0.1.2.jar.001");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMMjJFeUxkNTY5NkE&export=download"), modir + @"Project.Zagerb-0.1.2.jar.002");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMMENURGdnMmU1WGs&export=download"), modir + @"Project.Zagerb-0.1.2.jar.003");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMR0RpLWdOcnJXNzA&export=download"), modir + @"Project.Zagerb-0.1.2.jar.004");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMRzgyb2xveXozdlk&export=download"), modir + @"Project.Zagerb-0.1.2.jar.005");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMYzJvTFB1SkhtZjQ&export=download"), modir + @"Project.Zagerb-0.1.2.jar.006");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMWFpScFB4Ymd6UVk&export=download"), modir + @"Reis-Minimap-Mod-1.7.10.jar");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMNzh1VTVXUFNyRW8&export=download"), modir + @"ShadersModCore-v2.3.31-mc1.7.10-f.jar");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMTjhmWDRSSTg1Z2s&export=download"), modir + @"Thaumcraft-1.7.10-4.2.3.5.jar");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMNEZPQUxoc09VWU0&export=download"), modir + @"TooManyItems2014_07_15_1.7.10_Forge.jar");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMN0hzc3N0R2pMR1E&export=download"), modir2 + @"Baubles-1.7.10-1.0.1.10.jar");
+                Progress.Value++;
+                await SSG((@"https://docs.google.com/uc?id=0B5i3uwQXjFjMd0NGVy1YYUpFeWc&export=download"), modir2 + @"CodeChickenLib-1.7.10-1.1.3.138-universal.jar");
+                Progress.Value++;
+
+                ProcessStartInfo cmd = new ProcessStartInfo();
+                Process process = new Process();
+                cmd.FileName = (@"Extract.cmd");
+                cmd.WindowStyle = ProcessWindowStyle.Hidden;
+                cmd.CreateNoWindow = true;
+
+                Progress.Value++;
+
+                cmd.UseShellExecute = false;
+                cmd.RedirectStandardInput = true;
+                cmd.RedirectStandardOutput = true;
+
+                process.EnableRaisingEvents = false;
+                process.StartInfo = cmd;
+                process.Start();
+
+                Progress.Value = 100;
+                MessageBox.Show("완료");
+                Progress.Value = 0;
+            }
+            catch
+            {
+                MessageBox.Show("오류 발생\n데이터파일 다운로드에 실패하였습니다.");
+                DownloadButton.Enabled = true;
+            }
+            DownloadButton.Enabled = true;
+        }
+
+        private async Task SSG(string url, string des)
+        {
+            using (WebClient wc = new WebClient())
+            {
+                await wc.DownloadFileTaskAsync(url, des);
             }
         }
     }

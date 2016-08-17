@@ -40,6 +40,8 @@
             this.arguments = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.javaDir = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.javaCheckBox = new MaterialSkin.Controls.MaterialCheckBox();
+            this.Progress = new System.Windows.Forms.ProgressBar();
+            this.DownloadButton = new MaterialSkin.Controls.MaterialFlatButton();
             this.SuspendLayout();
             // 
             // UsernameLabel
@@ -156,7 +158,7 @@
             this.console.Name = "console";
             this.console.ReadOnly = true;
             this.console.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.console.Size = new System.Drawing.Size(476, 89);
+            this.console.Size = new System.Drawing.Size(476, 60);
             this.console.TabIndex = 8;
             // 
             // arguCheckBox
@@ -227,11 +229,36 @@
             this.javaCheckBox.UseVisualStyleBackColor = false;
             this.javaCheckBox.CheckedChanged += new System.EventHandler(this.javaCheckBox_CheckedChanged_1);
             // 
+            // Progress
+            // 
+            this.Progress.Location = new System.Drawing.Point(12, 315);
+            this.Progress.Name = "Progress";
+            this.Progress.Size = new System.Drawing.Size(476, 23);
+            this.Progress.TabIndex = 15;
+            // 
+            // DownloadButton
+            // 
+            this.DownloadButton.AutoSize = true;
+            this.DownloadButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.DownloadButton.Depth = 0;
+            this.DownloadButton.Location = new System.Drawing.Point(323, 133);
+            this.DownloadButton.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.DownloadButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.DownloadButton.Name = "DownloadButton";
+            this.DownloadButton.Primary = false;
+            this.DownloadButton.Size = new System.Drawing.Size(117, 36);
+            this.DownloadButton.TabIndex = 16;
+            this.DownloadButton.Text = "File Download";
+            this.DownloadButton.UseVisualStyleBackColor = true;
+            this.DownloadButton.Click += new System.EventHandler(this.DownloadButton_Click_1);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(500, 350);
+            this.Controls.Add(this.DownloadButton);
+            this.Controls.Add(this.Progress);
             this.Controls.Add(this.javaDir);
             this.Controls.Add(this.javaCheckBox);
             this.Controls.Add(this.arguments);
@@ -268,6 +295,8 @@
         private MaterialSkin.Controls.MaterialSingleLineTextField arguments;
         private MaterialSkin.Controls.MaterialSingleLineTextField javaDir;
         private MaterialSkin.Controls.MaterialCheckBox javaCheckBox;
+        private System.Windows.Forms.ProgressBar Progress;
+        private MaterialSkin.Controls.MaterialFlatButton DownloadButton;
     }
 }
 
