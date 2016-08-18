@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.UsernameLabel = new MaterialSkin.Controls.MaterialLabel();
             this.PasswordLabel = new MaterialSkin.Controls.MaterialLabel();
             this.UsernameField = new MaterialSkin.Controls.MaterialSingleLineTextField();
@@ -271,6 +272,7 @@
             this.Controls.Add(this.UsernameField);
             this.Controls.Add(this.PasswordLabel);
             this.Controls.Add(this.UsernameLabel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(500, 350);
             this.MinimumSize = new System.Drawing.Size(500, 350);
             this.Name = "Main";
